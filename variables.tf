@@ -6,7 +6,9 @@ variable "cloudfront_logs_table_name" {
 variable "cloudfront_access_log_prefix" {}
 variable "queries" {
     type = list(string)
+    default = []
 }
 variable "create_database" {
     type = bool
+    default = true
 }
