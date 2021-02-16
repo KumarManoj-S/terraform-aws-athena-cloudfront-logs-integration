@@ -6,13 +6,14 @@ athena query service and the CloudFront logs collected in S3.
 ## List of things it does
 
 - Create a database in athena query service.
-- Create a table for CloudFront logs using the schema defined in the AWS
-  doc.
+- Create a table for CloudFront logs using the schema defined in the [aws
+    doc](https://docs.aws.amazon.com/athena/latest/ug/cloudfront-logs.html#create-cloudfront-table)
+  .
 - Create the list of named queries given.
 
 ## Usage
 
-```
+```hcl
 module "athena-cloudfront-logs-integration" {
   source = "github.com/KumarManoj-S/athena-cloudfront-logs-integration"
   cloudfront_access_log_prefix = "cloudfront-logs"
