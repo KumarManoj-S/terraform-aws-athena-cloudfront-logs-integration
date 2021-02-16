@@ -1,13 +1,12 @@
 locals {
   athena_db_name_snake_case = replace(lower(var.database_name), "-", "_")
-  bucket_name = var.s3_bucket_name
 }
 
 
 resource "aws_athena_database" "access_logs_athena_database" {
   count = var.create_database == true ? 1 : 0
   name = local.athena_db_name_snake_case
-  bucket = local.bucket_name
+  bucket = var.s3_bucket_name
 }
 
 resource "aws_glue_catalog_table" "cloudfront_logs_catalog_table" {
@@ -20,7 +19,7 @@ resource "aws_glue_catalog_table" "cloudfront_logs_catalog_table" {
   }
 
   storage_descriptor {
-    location = "s3://${local.bucket_name}/${var.cloudfront_access_log_prefix}/"
+    location = "s3://${var.s3_bucket_name}/${var.cloudfront_access_log_prefix}/"
     input_format = "org.apache.hadoop.mapred.TextInputFormat"
     output_format = "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat"
 
