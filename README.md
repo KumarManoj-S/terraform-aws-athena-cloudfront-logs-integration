@@ -1,4 +1,4 @@
-# athena-cloudfront-logs-integration
+# Athena CloudFront logs integration
 
 This is a tiny terraform module that enables the integration between
 athena query service and the CloudFront logs collected in S3.
@@ -15,7 +15,7 @@ athena query service and the CloudFront logs collected in S3.
 
 ```hcl
 module "athena-cloudfront-logs-integration" {
-  source = "github.com/KumarManoj-S/athena-cloudfront-logs-integration"
+  source = "KumarManoj-S/athena-cloudfront-logs-integration/aws"
   cloudfront_access_log_prefix = "cloudfront-logs"
   create_database = true
   database_name = "cloudfront_logs_db"
@@ -28,10 +28,11 @@ module "athena-cloudfront-logs-integration" {
 
 | Name  | Description   | Type     | Default           | Required |
 |-------|---------------|----------|-------------------|:--------:|
-| s3_bucket_name  | S3 bucket name | `string` | - | yes      |
-| cloudfront_access_log_prefix  | S3 log prefix | `string` | `cloudfront_logs` | No      |
+| s3_bucket_name  | S3 bucket name | `string` | - | Yes      |
+| cloudfront_access_log_prefix  | S3 log prefix | `string` | - | Yes      |
 | create_database  | Variable that decides db creation | `bool` | `true` | No      |
-| database_name  | DB name | `string` | - | Yes if `create_database` is `false`      |
+| cloudfront_logs_table_name  | Table name | `string` | `cloudfront_logs` | No      |
+| database_name  | DB name | `string` | - | Yes    |
 | queries  | list of queries need to be saved | `list(string)` | `[]` | No      |
 
 ## Outputs
@@ -39,3 +40,8 @@ module "athena-cloudfront-logs-integration" {
 | Name          | Description                     |
 |---------------|---------------------------------|
 | cloudfront_logs_table_name | The name of the table created |
+
+
+## License
+
+MIT Licensed. See LICENSE for full details. 
