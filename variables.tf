@@ -1,19 +1,19 @@
 variable "database_name" {
     description = "The name of the database to be created."
-    type = "string"
+    type = string
 }
 variable "s3_bucket_name" {
     description = "The name of the S3 log bucket."
-    type = "string"
+    type = string
 }
 variable "cloudfront_logs_table_name" {
     default = "cloudfront_logs"
     description = "The name of the table to be created."
-    type = "string"
+    type = string
 }
 variable "cloudfront_access_log_prefix" {
     description = "The S3 log bucket prefix for the logs."
-    type = "string"
+    type = string
 }
 variable "queries" {
     type = list(string)
