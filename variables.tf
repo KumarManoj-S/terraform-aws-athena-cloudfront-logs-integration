@@ -17,7 +17,7 @@ variable "cloudfront_access_log_prefix" {
 }
 variable "queries" {
     type = list(object({
-        query_name = string
+        name = string
         query = string
     }))
     default = []
