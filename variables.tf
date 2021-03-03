@@ -16,7 +16,10 @@ variable "cloudfront_access_log_prefix" {
     type = string
 }
 variable "queries" {
-    type = list(string)
+    type = list(object({
+        query_name = string
+        query = string
+    }))
     default = []
     description = "The list of queries need to be saved in the athena query service."
 }
