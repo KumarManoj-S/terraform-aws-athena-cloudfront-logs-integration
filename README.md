@@ -19,7 +19,16 @@ module "athena-cloudfront-logs-integration" {
   cloudfront_access_log_prefix = "cloudfront-logs"
   create_database = true
   database_name = "cloudfront_logs_db"
-  queries = ["select * from cloudfront_logs limit 10;"]
+  queries = [
+    {
+      name = "my-first-query-name"
+      query = "select * from cloudfront_logs limit 10;"
+    },
+    {
+      name = "my-second-query-name"
+      query = "select * from cloudfront_logs where status = 400 limit 5;"
+    }
+  ]
   s3_bucket_name = "s3-log-bucket"
 }
 ```
